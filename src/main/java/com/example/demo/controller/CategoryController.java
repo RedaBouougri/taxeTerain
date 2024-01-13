@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.entity.Terain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +34,22 @@ public class CategoryController {
 	public void deleteById(@PathVariable Integer id) {
 		categoryService.deleteById(id);
 	}
+
+	@PutMapping("/update/{id}")
+	public Category save(@RequestBody Category p, @PathVariable int id) {
+		Category category = categoryService.findById(id);
+		if (category != null) {
+			if (p.getLabel() != null) {
+				category.setLabel(p.getLabel());
+
+			}
+			if (p.getDescription() != null) {
+				category.setDescription(p.getDescription());
+			}
+
+
+			categoryService.save(category);
+		}
+		return null;	}
 
 }

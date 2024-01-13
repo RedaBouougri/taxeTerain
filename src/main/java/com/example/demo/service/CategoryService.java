@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,7 @@ public class CategoryService {
 		categoryRepository.deleteById(id);
 	}
 
+	public Category findById(Integer integer) {
+		return categoryRepository.findById(integer).get();
+	}
 }
