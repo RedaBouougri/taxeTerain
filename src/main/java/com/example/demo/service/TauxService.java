@@ -28,15 +28,12 @@ public class TauxService {
 		return tauxRepository.findAll();
 	}
 
-	public Optional<Taux> findById(Integer id) {
-		return tauxRepository.findById(id);
+	public Taux findById(Integer id) {
+		return tauxRepository.findById(id).get();
 	}
 
 	public void deleteById(Integer id) {
 		tauxRepository.deleteById(id);
 	}
-
-
-	
 
 }

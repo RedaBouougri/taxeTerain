@@ -13,7 +13,9 @@ public class Taux {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private double montant;
-	
+
+	private int annee;
+
 	@ManyToOne
 	private Category category;
 	
@@ -36,10 +38,12 @@ public class Taux {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	
-	
-	
-	
 
+	public int getAnnee() {
+		return annee;
+	}
+
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
 }

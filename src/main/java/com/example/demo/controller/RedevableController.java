@@ -2,14 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Redevable;
 import com.example.demo.entity.Terain;
@@ -17,6 +12,7 @@ import com.example.demo.service.RedevableService;
 
 @RequestMapping("/api/redevable")
 @RestController
+@CrossOrigin("*")
 public class RedevableController {
 	
 	@Autowired
@@ -40,6 +36,28 @@ public class RedevableController {
 	public Redevable findByCin(@PathVariable String cin) {
 		return redevableService.findByCin(cin);
 	}
+
+	@PutMapping("/update/{id}")
+	public Redevable save(@RequestBody Redevable p, @PathVariable int id) {
+		Redevable redevable = redevableService.findById(id);
+		if (redevable != null) {
+			if (p.getNom() != null) {
+				redevable.setNom(p.getNom());
+
+			}
+			if (p.getPrenom() != null) {
+				redevable.setPrenom(p.getPrenom());
+			}
+			if (p.getCin() != null) {
+				redevable.setCin(p.getCin());
+
+			}
+
+			redevableService.save(redevable);
+		}
+		return null;	}
+
+
 	
 	
 

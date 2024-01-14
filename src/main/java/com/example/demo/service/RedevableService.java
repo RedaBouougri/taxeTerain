@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class RedevableService {
 		return redevableRepository.findByCin(cin);
 	}
 
-	
-	
-
+	public Redevable findById(Integer integer) {
+		return redevableRepository.findById(integer).get();
+	}
 }

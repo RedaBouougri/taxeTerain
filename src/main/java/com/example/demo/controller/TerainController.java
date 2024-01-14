@@ -54,6 +54,9 @@ public class TerainController {
 			if(p.getRedevable() != null) {
 				terain.setRedevable(p.getRedevable());
 			}
+			if(p.getCategory() != null) {
+				terain.setCategory(p.getCategory());
+			}
 			return terainService.save(terain);
 		}
 		return null;	}

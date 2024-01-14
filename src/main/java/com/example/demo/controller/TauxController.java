@@ -3,20 +3,17 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entity.Category;
+import com.example.demo.entity.Redevable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Taux;
 import com.example.demo.service.TauxService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/taux")
 public class TauxController {
 	@Autowired
@@ -39,12 +36,33 @@ public class TauxController {
 
 	@GetMapping("/findbyid/{id}")
 	public Taux findById(@PathVariable Integer id) {
-		return tauxService.findById(id).get();
+		return tauxService.findById(id);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		tauxService.deleteById(id);
 	}
+
+	@PutMapping("/update/{id}")
+	public Taux save(@RequestBody Taux p, @PathVariable int id) {
+		Taux red = tauxService.findById(id);
+		if (red != null) {
+			if (p.getMontant() != 0) {
+				red.setMontant(p.getMontant());
+
+			}
+			if (p.getAnnee() != 0) {
+				red.setAnnee(p.getAnnee());
+			}
+
+			if (p.getCategory() != null) {
+				red.setCategory(p.getCategory());
+			}
+
+
+			tauxService.save(red);
+		}
+		return null;	}
 
 }
