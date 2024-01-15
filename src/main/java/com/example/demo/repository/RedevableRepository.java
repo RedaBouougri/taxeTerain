@@ -7,4 +7,9 @@ import com.example.demo.entity.Redevable;
 public interface RedevableRepository extends JpaRepository<Redevable, Integer>{
 
 	Redevable findByCin(String cin);
+
+
+
+
+
 }

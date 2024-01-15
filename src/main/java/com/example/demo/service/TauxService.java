@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,7 @@ public class TauxService {
 		tauxRepository.deleteById(id);
 	}
 
+	public Taux findByCategoryAndAnnee(Category category, int annee) {
+		return tauxRepository.findByCategoryAndAnnee(category, annee);
+	}
 }
